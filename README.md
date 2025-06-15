@@ -1,2 +1,3 @@
 # Sorting-Algorithm-Visualizer
-The Sorting Algorithm Visualizer is a Python-based graphical tool that visually demonstrates how sorting algorithms work. Built using the Pygame library, it animates the process of sorting a list of numbers, helping users grasp the logic behind each step. 
+This is a Python-based Sorting Algorithm Visualizer built using the Pygame library. It visually demonstrates how sorting algorithms like **Bubble Sort** and **Insertion Sort** work by animating each step of the sorting process. The tool allows users to observe how elements are compared and swapped in real time, helping them understand the internal mechanics of these algorithms in both ascending and descending order.
+

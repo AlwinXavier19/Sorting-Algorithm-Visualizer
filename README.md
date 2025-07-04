@@ -1,3 +1,13 @@
-# Sorting-Algorithm-Visualizer
-This is a Python-based Sorting Algorithm Visualizer built using the Pygame library. It visually demonstrates how sorting algorithms like **Bubble Sort** and **Insertion Sort** work by animating each step of the sorting process. The tool allows users to observe how elements are compared and swapped in real time, helping them understand the internal mechanics of these algorithms in both ascending and descending order.
+This project is a Merge Sort Visualizer built using Python and Pygame. It graphically demonstrates how the Merge Sort algorithm works by showing a set of bars (representing numbers) being split, compared, and merged step-by-step in real time.
 
+Users can:
+
+Start the sorting animation
+
+Generate a new list of random numbers
+
+Choose ascending or descending sort order
+
+Understand how merge sort divides and conquers
+
+It’s perfect for beginners learning sorting algorithms or anyone who wants to visualize how Merge Sort works under the hood.

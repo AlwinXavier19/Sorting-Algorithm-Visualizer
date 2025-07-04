@@ -93,36 +93,47 @@ def draw_bars(visualizer, color_positions={}, clear_bg=False):
 def generate_random_list(n, max_value, min_value):
     return [random.randint(min_value, max_value) for _ in range(n)]
 
-def bubble_sort(visualizer, ascending=True):
+def merge_sort(visualizer, ascending=True):
     numbers = visualizer.numbers
 
-    for i in range(len(numbers) - 1):
-        for j in range(len(numbers) - 1 - i):
-            num1 = numbers[j]
-            num2 = numbers[j + 1]
+    def merge_sort_recursive(start, end):
+        if end - start <= 1:
+            return
 
-            if (num1 > num2 and ascending) or (num2 > num1 and not ascending):
-                numbers[j], numbers[j + 1] = numbers[j + 1], numbers[j]
-                draw_bars(visualizer, {j: visualizer.GREEN, j + 1: visualizer.RED}, True)
-                yield True
-    return numbers
+        mid = (start + end) // 2
 
-def insertion_sort(visualizer, ascending=True):
-    numbers = visualizer.numbers
-    for i in range(1, len(numbers)):
-        current = numbers[i]
-        j = i - 1
+        yield from merge_sort_recursive(start, mid)
+        yield from merge_sort_recursive(mid, end)
 
-        while j >= 0 and ((numbers[j] > current and ascending) or (numbers[j] < current and not ascending)):
-            numbers[j + 1] = numbers[j]
-            j -= 1
-            draw_bars(visualizer, {j + 1: visualizer.GREEN, i: visualizer.RED}, True)
+        merged = []
+        left_idx = start
+        right_idx = mid
+
+        while left_idx < mid and right_idx < end:
+            left_val = numbers[left_idx]
+            right_val = numbers[right_idx]
+
+            if (left_val <= right_val and ascending) or (left_val > right_val and not ascending):
+                merged.append(left_val)
+                left_idx += 1
+            else:
+                merged.append(right_val)
+                right_idx += 1
+
+        while left_idx < mid:
+            merged.append(numbers[left_idx])
+            left_idx += 1
+
+        while right_idx < end:
+            merged.append(numbers[right_idx])
+            right_idx += 1
+
+        for i, value in enumerate(merged):
+            numbers[start + i] = value
+            draw_bars(visualizer, {start + i: visualizer.GREEN}, True)
             yield True
 
-        numbers[j + 1] = current
-        draw_bars(visualizer, {j + 1: visualizer.GREEN, i: visualizer.RED}, True)
-        yield True
-    return numbers
+    yield from merge_sort_recursive(0, len(numbers))
 
 def main():
     run = True
@@ -137,12 +148,12 @@ def main():
 
     sorting = False
     ascending = True
-    sorting_algorithm = bubble_sort
-    algorithm_name = "Bubble Sort"
+    sorting_algorithm = merge_sort
+    algorithm_name = "Merge Sort"
     sort_generator = None
 
     while run:
-        clock.tick(120)
+        clock.tick(60)
 
         if sorting:
             try:
@@ -171,12 +182,9 @@ def main():
                     ascending = False
 
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_b and not sorting:
-                    sorting_algorithm = bubble_sort
-                    algorithm_name = "Bubble Sort"
-                elif event.key == pygame.K_i and not sorting:
-                    sorting_algorithm = insertion_sort
-                    algorithm_name = "Insertion Sort"
+                if event.key == pygame.K_m and not sorting:
+                    sorting_algorithm = merge_sort
+                    algorithm_name = "Merge Sort"
 
     pygame.quit()
 

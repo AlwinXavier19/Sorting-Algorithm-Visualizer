@@ -5,10 +5,10 @@ This project is a Merge Sort Visualizer built using Python and Pygame. It graphi
 Features:
 
 ✅ Real-time visualization of the Merge Sort algorithm  
-✅ Interactive GUI built with Pygame
-✅ Regenerate random number list anytime  
+✅ Interactive GUI built with Pygame  
 ✅ Toggle between ascending and descending sort  
 ✅ Step-by-step animation using Python generators
+✅ Regenerate random number list anytime
 
 How It Works:
 

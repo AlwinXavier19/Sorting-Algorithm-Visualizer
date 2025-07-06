@@ -8,7 +8,6 @@ Features:
 ✅ Interactive GUI built with Pygame  
 ✅ Toggle between ascending and descending sort  
 ✅ Step-by-step animation using Python generators
-✅ Regenerate random number list anytime
 
 How It Works:
 
